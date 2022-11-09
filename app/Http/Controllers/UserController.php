@@ -15,8 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $records = User::where('isDelete', '0')->where('isActive', '1')->get();
-        $records = User::all();
+        $records = User::where('isDelete', '0')->where('isActive', '1')->get();
         $response = [
             'data' => $records
         ];
