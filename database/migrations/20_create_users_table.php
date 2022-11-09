@@ -26,9 +26,11 @@ return new class extends Migration
             $table->string('age')->nullable();
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
-            $table->string('major')->nullable();
 
             $table->timestamps();
+
+            $table->unsignedBigInteger('major_id');
+            $table->foreign('major_id')->references('id')->on('majors');
         });
     }
 

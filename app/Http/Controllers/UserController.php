@@ -92,7 +92,6 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Sửa user thành công!',
             'data' => $user,
-            'request' => $request->all()
         ]);
     }
 
