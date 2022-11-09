@@ -15,7 +15,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $records = User::where('isDelete', '0')->where('isActive', '1')->get();
+        // $records = User::where('isDelete', '0')->where('isActive', '1')->get();
+        $records = User::all();
         $response = [
             'data' => $records
         ];
@@ -39,7 +40,24 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        $body = $request->all();
+
+        // Check user
+        $user = User::where('username', $body['username'])->first();
+        if ($user) {
+            return response([
+                'message' => 'Tài khoản đã tồn tại!'
+            ], 409);
+        }
+
+        $body['password'] = bcrypt($body['password']);
+        $body['isActive'] = true;
+
+        User::create($body);
+
+        return response()->json([
+            'message' => 'Tạo mới thành viên thành công!',
+        ], 201);
     }
 
     /**
@@ -119,6 +137,5 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Sét duyệt tài khoản thành công!'
         ], 200);
-
     }
 }
