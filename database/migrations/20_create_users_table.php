@@ -29,8 +29,8 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unsignedBigInteger('major_id');
-            $table->foreign('major_id')->references('id')->on('majors');
+            $table->unsignedBigInteger('major');
+            $table->foreign('major')->references('id')->on('majors');
         });
     }
 
