@@ -29,8 +29,8 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unsignedBigInteger('major');
-            $table->foreign('major')->references('id')->on('majors');
+            $table->unsignedBigInteger('major')->nullable();
+            $table->foreign('major')->references('id')->on('majors')->nullOnDelete();
         });
     }
 
