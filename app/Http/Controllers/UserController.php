@@ -87,7 +87,14 @@ class UserController extends Controller
             ], 404);
         }
 
-        $user->update($request->all());
+        $body = $request->all();
+
+        if (array_key_exists('password', $body))
+        {
+            $body['password'] = bcrypt($body['password']);
+        }
+
+        $user->update($body);
 
         return response()->json([
             'message' => 'Sửa user thành công!',
