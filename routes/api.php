@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/users/waiting', [UserController::class, 'waiting']);
-Route::apiResource('/users', UserController::class);
+Route::apiResource('/users', UserController::class)->except('update');;
+Route::post('/users/{userId}', [UserController::class, 'update']);
 Route::patch('/users/active/{userId}', [UserController::class, 'active']);
 
 Route::apiResource('/majors', MajorController::class);

@@ -52,6 +52,14 @@ class UserController extends Controller
         $body['password'] = bcrypt($body['password']);
         $body['isActive'] = true;
 
+        if ($request->hasFile('avatar')) {
+            $ext = $request->file('avatar')->extension();
+            $generate_unique_file_name = md5(time()) . '.' . $ext;
+            $request->file('avatar')->move('images', $generate_unique_file_name, 'local');
+
+            $body['avatar'] = 'images/' . $generate_unique_file_name;
+        }
+
         User::create($body);
 
         return response()->json([
@@ -89,9 +97,16 @@ class UserController extends Controller
 
         $body = $request->all();
 
-        if (array_key_exists('password', $body))
-        {
+        if (array_key_exists('password', $body)) {
             $body['password'] = bcrypt($body['password']);
+        }
+
+        if ($request->hasFile('avatar')) {
+            $ext = $request->file('avatar')->extension();
+            $generate_unique_file_name = md5(time()) . '.' . $ext;
+            $request->file('avatar')->move('images', $generate_unique_file_name, 'local');
+
+            $body['avatar'] = 'images/' . $generate_unique_file_name;
         }
 
         $user->update($body);
@@ -99,6 +114,7 @@ class UserController extends Controller
         return response()->json([
             'message' => 'Sửa user thành công!',
             'data' => $user,
+            'request' => $request->all()
         ]);
     }
 
