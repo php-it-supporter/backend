@@ -80,7 +80,7 @@ class MajorController extends Controller
         return response()->json([
             'message' => 'Sửa chuyên ngành thành công!',
             'data' => $isExist,
-        ], 201);
+        ], 200);
     }
 
     /**
@@ -102,6 +102,6 @@ class MajorController extends Controller
 
         return response()->json([
             'message' => 'Xóa chuyên ngành thành công!',
-        ], 201);
+        ], 200);
     }
 }

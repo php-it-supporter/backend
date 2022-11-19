@@ -115,7 +115,7 @@ class UserController extends Controller
             'message' => 'Sửa user thành công!',
             'data' => $user,
             'request' => $request->all()
-        ]);
+        ], 200);
     }
 
     /**
