@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -23,6 +24,7 @@ Route::post('/users/{userId}', [UserController::class, 'update']);
 Route::patch('/users/active/{userId}', [UserController::class, 'active']);
 
 Route::apiResource('/majors', MajorController::class);
+Route::apiResource('/categories', CategoryController::class);
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
