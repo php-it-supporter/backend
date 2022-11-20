@@ -27,14 +27,23 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $record = Post::where('name', $request->name)->first();
+        $record = Post::where('title', $request->title)->first();
         if ($record) {
             return response([
                 'message' => 'Bài đăng đã tồn tại!'
             ], 409);
         }
 
-        Post::create($request->all());
+        $body = $request->all();
+        if ($request->hasFile('image')) {
+            $ext = $request->file('image')->extension();
+            $generate_unique_file_name = md5(time()) . '.' . $ext;
+            $request->file('image')->move('images', $generate_unique_file_name, 'local');
+
+            $body['image'] = 'images/' . $generate_unique_file_name;
+        }
+
+        Post::create($body);
 
         return response()->json([
             'message' => 'Tạo mới bài đăng thành công!',
@@ -77,14 +86,26 @@ class PostController extends Controller
             ], 404);
         }
 
-        $record = Post::where('title', $request->title)->first();
-        if ($record) {
-            return response([
-                'message' => 'Bài đăng đã tồn tại!'
-            ], 409);
+        $body = $request->all();
+
+        if ($body['title'] != $isExist->title) {
+            $record = Post::where('title', $request->title)->first();
+            if ($record) {
+                return response([
+                    'message' => 'Bài đăng đã tồn tại!'
+                ], 409);
+            }
         }
 
-        $isExist->update($request->all());
+        if ($request->hasFile('image')) {
+            $ext = $request->file('image')->extension();
+            $generate_unique_file_name = md5(time()) . '.' . $ext;
+            $request->file('image')->move('images', $generate_unique_file_name, 'local');
+
+            $body['image'] = 'images/' . $generate_unique_file_name;
+        }
+
+        $isExist->update($body);
 
         return response()->json([
             'message' => 'Sửa bài đăng thành công!',

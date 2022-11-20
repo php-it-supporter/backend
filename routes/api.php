@@ -20,13 +20,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/users/waiting', [UserController::class, 'waiting']);
-Route::apiResource('/users', UserController::class)->except('update');;
+Route::apiResource('/users', UserController::class)->except('update');
 Route::post('/users/{userId}', [UserController::class, 'update']);
 Route::patch('/users/active/{userId}', [UserController::class, 'active']);
 
 Route::apiResource('/majors', MajorController::class);
 Route::apiResource('/categories', CategoryController::class);
-Route::apiResource('/posts', PostController::class);
+Route::apiResource('/posts', PostController::class)->except('update');
+Route::post('/posts/{postId}', [PostController::class, 'update']);
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
