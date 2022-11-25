@@ -54,10 +54,18 @@ class AuthController extends Controller
             ], 409);
         }
 
-        User::create([
-            'username' => $fields['username'],
-            'password' => bcrypt($fields['password']),
-        ]);
+        $body = $request->all();
+        $body['password'] = bcrypt($fields['password']);
+
+        if ($request->hasFile('avatar')) {
+            $ext = $request->file('avatar')->extension();
+            $generate_unique_file_name = md5(time()) . '.' . $ext;
+            $request->file('avatar')->move('images', $generate_unique_file_name, 'local');
+
+            $body['avatar'] = 'images/' . $generate_unique_file_name;
+        }
+
+        User::create($body);
 
         $response = [
             'message' => 'Đăng ký thành công, hãy chờ sét duyệt!'
