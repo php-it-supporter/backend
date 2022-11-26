@@ -25,6 +25,14 @@ class PostSeeder extends Seeder
                     'author' => 1,
                     'category' => 1,
                 ],
+                [
+                    'title' => 'title2',
+                    'type' => 1,
+                    'content' => 'content',
+                    'image' => 'image',
+                    'author' => 1,
+                    'category' => 1,
+                ],
             ]
         );
     }

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SlideController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,7 @@ Route::apiResource('/majors', MajorController::class);
 Route::apiResource('/categories', CategoryController::class);
 Route::apiResource('/posts', PostController::class)->except('update');
 Route::post('/posts/{postId}', [PostController::class, 'update']);
+Route::apiResource('/slides', SlideController::class)->except(['update', 'show']);
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
