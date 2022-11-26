@@ -15,7 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $records = Post::with('author')->with('category')->get();
+        $type = request()->type ?? '0';
+        $records = Post::with(['author', 'category'])->where('type', $type)->orderByDesc('created_at')->get();
         return response()->json(['data' => $records], 200);
     }
 

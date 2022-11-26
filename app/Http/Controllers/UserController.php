@@ -15,7 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $records = User::with('major')->where('isDelete', '0')->where('isActive', '1')->get();
+        $records = User::with('major')->where('isDelete', '0')->where('isActive', '1')->orderByDesc('created_at')->get();
         $response = [
             'data' => $records
         ];
@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function waiting()
     {
-        $records = User::with('major')->where('isDelete', '0')->where('isActive', '0')->get();
+        $records = User::with('major')->where('isDelete', '0')->where('isActive', '0')->orderByDesc('created_at')->get();
         $response = [
             'data' => $records
         ];
