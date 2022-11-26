@@ -73,9 +73,18 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show($userId)
     {
-        //
+        $record = User::find($userId);
+        if (!$record) {
+            return response([
+                'message' => 'Không tìm thấy!'
+            ], 404);
+        }
+
+        return response()->json([
+            'data' => $record,
+        ], 200);
     }
 
     /**
