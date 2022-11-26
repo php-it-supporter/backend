@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $records = Category::all();
+        $records = Category::with('posts')->get();
         return response()->json(['data' => $records], 200);
     }
 

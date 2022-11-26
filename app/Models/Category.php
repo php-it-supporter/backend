@@ -11,4 +11,9 @@ class Category extends Model
 
     public $timestamps = false;
     protected $fillable = ['name', 'desc'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'category', 'id');
+    }
 }
