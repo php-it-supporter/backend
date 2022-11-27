@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
                 MajorSeeder::class,
                 UserSeeder::class,
                 CategorySeeder::class,
-                PostSeeder::class,
+                // PostSeeder::class,
             ]
         );
     }

@@ -22,12 +22,12 @@ class UserSeeder extends Seeder
                     'password' => bcrypt('admin'),
                     'role' => 'r1',
                     'isActive' => true,
-                    'fullName' => 'Hồ Minh Hãi',
-                    'age' => 21,
+                    'fullName' => 'Lê Quang Huy',
+                    'age' => 'k15',
                     'phone' => '04322222222',
                     'avatar' => '',
                     'major' => 1
-                ]
+                ],
             ]
         );
     }
