@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('role')->default('r3');
+            $table->string('role')->default('r4');
 
             $table->string('isActive')->default(false);
             $table->string('isDelete')->default(false);
@@ -31,6 +31,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('major')->nullable();
             $table->foreign('major')->references('id')->on('majors')->nullOnDelete();
+
+            $table->unsignedBigInteger('department')->nullable();
+            $table->foreign('department')->references('id')->on('departments')->nullOnDelete();
         });
     }
 

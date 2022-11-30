@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 MajorSeeder::class,
+                DepartmentSeeder::class,
                 UserSeeder::class,
                 CategorySeeder::class,
                 // PostSeeder::class,

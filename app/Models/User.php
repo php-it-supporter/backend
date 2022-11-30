@@ -26,7 +26,8 @@ class User extends Authenticatable
         'avatar',
         'major',
         'isActive',
-        'role'
+        'role',
+        'department',
     ];
 
     /**

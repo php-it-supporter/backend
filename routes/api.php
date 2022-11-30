@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SlideController;
@@ -32,6 +33,8 @@ Route::patch('/posts/active/{postId}', [PostController::class, 'active']);
 Route::apiResource('/posts', PostController::class)->except('update');
 Route::post('/posts/{postId}', [PostController::class, 'update']);
 Route::apiResource('/slides', SlideController::class)->except(['update', 'show']);
+
+Route::apiResource('/departments', DepartmentController::class);
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
