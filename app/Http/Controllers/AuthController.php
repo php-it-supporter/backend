@@ -22,7 +22,12 @@ class AuthController extends Controller
         $user = User::where('username', $fields['username'])->first();
 
         // Check password
-        if (!$user || !Hash::check($fields['password'], $user->password)) {
+        if (
+            !$user
+            || !Hash::check($fields['password'], $user->password)
+            || $user["isActive"] == false
+            || $user["isDelete"] == true
+        ) {
             return response([
                 'message' => 'Đăng nhập thất bại!'
             ], 401);
