@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('avatar')->nullable();
             $table->string('phone')->nullable();
 
+            $table->string('fund')->nullable();
+
             $table->timestamps();
 
             $table->unsignedBigInteger('major')->nullable();

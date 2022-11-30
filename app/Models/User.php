@@ -28,6 +28,7 @@ class User extends Authenticatable
         'isActive',
         'role',
         'department',
+        'fund',
     ];
 
     /**
