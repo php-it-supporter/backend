@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 DepartmentSeeder::class,
                 UserSeeder::class,
                 CategorySeeder::class,
+                FinancialSeeder::class,
                 // PostSeeder::class,
             ]
         );

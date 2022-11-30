@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SlideController;
@@ -35,6 +36,7 @@ Route::post('/posts/{postId}', [PostController::class, 'update']);
 Route::apiResource('/slides', SlideController::class)->except(['update', 'show']);
 
 Route::apiResource('/departments', DepartmentController::class);
+Route::apiResource('/financials', FinancialController::class)->except(['show', 'destroy']);
 
 Route::post('/auth/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
