@@ -26,7 +26,8 @@ class UserSeeder extends Seeder
                     'age' => 'k15',
                     'phone' => '04322222222',
                     'avatar' => '',
-                    'major' => 1
+                    'major' => 1,
+                    'department' => 1,
                 ],
             ]
         );

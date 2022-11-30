@@ -15,16 +15,27 @@ class UserController extends Controller
      */
     public function index()
     {
-        $records = User::with('major')->where('isDelete', '0')->where('isActive', '1')->orderByDesc('created_at')->get();
+        $department = request()->departmentId;
+
+        $records = User::with(['major', 'department'])
+            ->where('isDelete', '0')
+            ->where('isActive', '1')
+            ->orderByDesc('created_at');
+
+        if ($department) {
+            $records->where('department', $department);
+        }
+
         $response = [
-            'data' => $records
+            'data' => $records->get(),
+            'department' => $department
         ];
         return response($response);
     }
 
     public function waiting()
     {
-        $records = User::with('major')->where('isDelete', '0')->where('isActive', '0')->orderByDesc('created_at')->get();
+        $records = User::with(['major', 'department'])->where('isDelete', '0')->where('isActive', '0')->orderByDesc('created_at')->get();
         $response = [
             'data' => $records
         ];
