@@ -27,6 +27,8 @@ Route::patch('/users/active/{userId}', [UserController::class, 'active']);
 
 Route::apiResource('/majors', MajorController::class);
 Route::apiResource('/categories', CategoryController::class);
+Route::get('/posts/waiting', [PostController::class, 'waiting']);
+Route::patch('/posts/active/{postId}', [PostController::class, 'active']);
 Route::apiResource('/posts', PostController::class)->except('update');
 Route::post('/posts/{postId}', [PostController::class, 'update']);
 Route::apiResource('/slides', SlideController::class)->except(['update', 'show']);

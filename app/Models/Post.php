@@ -16,6 +16,7 @@ class Post extends Model
         'image',
         'author',
         'category',
+        'isActive',
     ];
 
     public function author()
