@@ -61,6 +61,7 @@ class AuthController extends Controller
 
         $body = $request->all();
         $body['password'] = bcrypt($fields['password']);
+        $body['isActive'] = false;
 
         if ($request->hasFile('avatar')) {
             $ext = $request->file('avatar')->extension();
