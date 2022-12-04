@@ -28,7 +28,6 @@ class UserController extends Controller
 
         $response = [
             'data' => $records->get(),
-            'department' => $department
         ];
         return response($response);
     }

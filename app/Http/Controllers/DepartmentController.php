@@ -78,11 +78,13 @@ class DepartmentController extends Controller
             ], 422);
         }
 
-        $record = Department::where('name', $request->name)->first();
-        if ($record) {
-            return response([
-                'message' => 'Ban đã tồn tại!'
-            ], 409);
+        if ($request->name != $isExist->name) {
+            $record = Department::where('name', $request->name)->first();
+            if ($record) {
+                return response([
+                    'message' => 'Ban đã tồn tại!'
+                ], 409);
+            }
         }
 
         $isExist->update($request->all());

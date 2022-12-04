@@ -68,11 +68,13 @@ class MajorController extends Controller
             ], 404);
         }
 
-        $record = Major::where('name', $request->name)->first();
-        if ($record) {
-            return response([
-                'message' => 'Chuyên ngành đã tồn tại!'
-            ], 409);
+        if ($request->name != $isExist->name) {
+            $record = Major::where('name', $request->name)->first();
+            if ($record) {
+                return response([
+                    'message' => 'Chuyên ngành đã tồn tại!'
+                ], 409);
+            }
         }
 
         $isExist->update($request->all());

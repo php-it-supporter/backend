@@ -68,11 +68,13 @@ class CategoryController extends Controller
             ], 404);
         }
 
-        $record = Category::where('name', $request->name)->first();
-        if ($record) {
-            return response([
-                'message' => 'Thể loại đã tồn tại!'
-            ], 409);
+        if ($request->name != $isExist->name) {
+            $record = Category::where('name', $request->name)->first();
+            if ($record) {
+                return response([
+                    'message' => 'Thể loại đã tồn tại!'
+                ], 409);
+            }
         }
 
         $isExist->update($request->all());

@@ -62,11 +62,13 @@ class FinancialController extends Controller
             ], 404);
         }
 
-        $record = Financial::where('event', $request->event)->first();
-        if ($record) {
-            return response([
-                'message' => 'Sự kiện chi tiêu đã tồn tại!'
-            ], 409);
+        if ($request->event != $isExist->event) {
+            $record = Financial::where('event', $request->event)->first();
+            if ($record) {
+                return response([
+                    'message' => 'Sự kiện chi tiêu đã tồn tại!'
+                ], 409);
+            }
         }
 
         $isExist->update($request->all());
