@@ -128,6 +128,10 @@ class UserController extends Controller
             $body['avatar'] = 'images/' . $generate_unique_file_name;
         }
 
+        if ($request->fund) {
+            $body['fund'] += $user->fund;
+        }
+
         $user->update($body);
 
         return response()->json([
